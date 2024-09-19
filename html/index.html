@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog de Django</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body id="inicio">
+    <header>
+        <h1>Blog de Django</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="crud.html">CRUD en Django</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="introduccion">
+            <h2>Introducción a Django</h2>
+            <p>Django es un framework de desarrollo web de alto nivel que fomenta el desarrollo rápido y el diseño limpio y pragmático. Construido por desarrolladores experimentados, se encarga de gran parte de las complicaciones del desarrollo web, por lo que puedes concentrarte en escribir tu aplicación sin necesidad de reinventar la rueda.</p>
+        </section>
+
+        <section id="multimedia">
+            <h2>Logo de Django y Video informativo</h2>
+            <img src="https://codingornot.com/wp-content/uploads/2017/10/dijango-porque-usarlo.png" class="resize-image" alt="Logo Django">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/T1intZyhXDU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              </div>
+                          
+        </section>
+
+        <section id="contenido-externo">
+            <h2>Contenido Externo</h2>
+            <table>
+                <tr>
+                    <th>Recurso</th>
+                    <th>Enlace</th>
+                </tr>
+                <tr>
+                    <td>Documentación oficial de Django</td>
+                    <td><a href="https://docs.djangoproject.com/" target="_blank">Ver</a></td>
+                </tr>
+                <tr>
+                    <td>Tutorial de Django Girls</td>
+                    <td><a href="https://tutorial.djangogirls.org/" target="_blank">Ver</a></td>
+                </tr>
+                <tr>
+                    <td>Django para principiantes</td>
+                    <td><a href="https://developer.mozilla.org/es/docs/Learn/Server-side/Django" target="_blank">Ver</a></td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="ventajas-desventajas">
+            <h2>Ventajas y Desventajas de Django</h2>
+            <div class="columnas">
+                <div>
+                    <h3>Ventajas</h3>
+                    <ul>
+                        <li>Rápido desarrollo</li>
+                        <li>Seguridad robusta</li>
+                        <li>Escalabilidad</li>
+                        <li>Versatilidad</li>
+                        <li>Gran comunidad y documentación</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Desventajas</h3>
+                    <ul>
+                        <li>Curva de aprendizaje inicial</li>
+                        <li>Puede ser excesivo para proyectos pequeños</li>
+                        <li>Monolítico por naturaleza</li>
+                        <li>Despliegue más complejo que otras alternativas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Blog de Django. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = document.body.id;
+            console.log('Página actual:', currentPage);
+            // Aquí puedes agregar cualquier funcionalidad específica para la página de inicio
+        });
+    </script>
+</body>
+</html>

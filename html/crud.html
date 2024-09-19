@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD en Django - Blog de Django</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body id="crud">
+    <header>
+        <h1>Blog de Django</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="crud.html">CRUD en Django</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>CRUD en Django</h2>
+        <section>
+            <h3>¿Qué es CRUD?</h3>
+            <p>CRUD es un acrónimo que significa Create (Crear), Read (Leer), Update (Actualizar) y Delete (Eliminar). Estas son las cuatro operaciones básicas que se realizan en la mayoría de las aplicaciones web con bases de datos.</p>
+        </section>
+        <section>
+            <h3>Implementación de CRUD en Django</h3>
+            <ol>
+                <li>
+                    <h4>Crear el modelo</h4>
+                    <pre><code>
+# models.py
+from django.db import models
+
+class Item(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+                    </code></pre>
+                </li>
+                <li>
+                    <h4>Crear las vistas</h4>
+                    <pre><code>
+# views.py
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Item
+from .forms import ItemForm
+
+def item_list(request):
+    items = Item.objects.all()
+    return render(request, 'item_list.html', {'items': items})
+
+def item_detail(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    return render(request, 'item_detail.html', {'item': item})
+
+def item_new(request):
+    if request.method == "POST":
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            item = form.save()
+            return redirect('item_detail', pk=item.pk)
+    else:
+        form = ItemForm()
+    return render(request, 'item_edit.html', {'form': form})
+
+def item_edit(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    if request.method == "POST":
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            item = form.save()
+            return redirect('item_detail', pk=item.pk)
+    else:
+        form = ItemForm(instance=item)
+    return render(request, 'item_edit.html', {'form': form})
+
+def item_delete(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    item.delete()
+    return redirect('item_list')
+                    </code></pre>
+                </li>
+                <li>
+                    <h4>Crear las URLs</h4>
+                    <pre><code>
+# urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.item_list, name='item_list'),
+    path('item/<int:pk>/', views.item_detail, name='item_detail'),
+    path('item/new/', views.item_new, name='item_new'),
+    path('item/<int:pk>/edit/', views.item_edit, name='item_edit'),
+    path('item/<int:pk>/delete/', views.item_delete, name='item_delete'),
+]
+                    </code></pre>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Blog de Django. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = document.body.id;
+            console.log('Página actual:', currentPage);
+            // Aquí puedes agregar cualquier funcionalidad específica para la página de CRUD
+        });
+    </script>
+</body>
+</html>
